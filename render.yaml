@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: av-catalog-standardizer
+    env: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.0
+      - key: PHI_MODEL_ID
+        value: microsoft/phi-2
+      - key: PHI_QUANTIZATION
+        value: 8bit
+      - key: CACHE_ENABLED
+        value: true
+      - key: SECRET_KEY
+        generateValue: true
+      - key: FLASK_ENV
+        value: production
