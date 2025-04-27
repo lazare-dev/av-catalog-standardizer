@@ -36,7 +36,14 @@ def allowed_file(filename):
 @app.route('/')
 def index():
     """Render the main upload page."""
-    return render_template('index.html')
+    # Create an empty validation object to avoid template errors
+    empty_validation = {
+        "valid_count": 0, 
+        "invalid_count": 0, 
+        "errors": [], 
+        "warnings": []
+    }
+    return render_template('index.html', validation=empty_validation, validation_summary="")
 
 @app.route('/upload', methods=['POST'])
 def upload_file():

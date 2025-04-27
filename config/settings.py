@@ -16,8 +16,8 @@ ALLOWED_EXTENSIONS = {'csv', 'xlsx', 'xls', 'pdf'}
 MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16MB max upload size
 
 # Microsoft Phi Model Settings
-PHI_MODEL_ID = "microsoft/phi-2"  # Can be "microsoft/phi-1.5" for lighter deployment
-PHI_QUANTIZATION = "8bit"  # Options: None, "8bit", "4bit"
+PHI_MODEL_ID = "gpt2"  # Lightweight model with excellent compatibility
+PHI_QUANTIZATION = None  # No need for quantization with this small model
 MAX_NEW_TOKENS = 1024
 TEMPERATURE = 0.7
 TOP_P = 0.95

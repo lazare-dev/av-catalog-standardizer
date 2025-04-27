@@ -1,0 +1,20 @@
+:root {
+  --bs-primary: #2B6CB0;
+  --bs-secondary: #4A5568;
+  --bs-light: #F7FAFC;
+  --bs-dark:  #2D3748;
+  --bs-success: #38A169;
+}
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--bs-light);
+}
+.btn-primary {
+  border-radius: 0.25rem;
+  box-shadow: none;
+}
+.card {
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: none;
+}

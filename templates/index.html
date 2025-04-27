@@ -205,32 +205,38 @@
                 <div class="card validation-card">
                     <div class="card-body">
                         <h5 class="card-title">Summary</h5>
-                        {% set total_count = validation.valid_count + validation.invalid_count %}
-                        {% set valid_pct = (validation.valid_count / total_count * 100)|round if total_count > 0 else 0 %}
-                        {% set invalid_pct = (validation.invalid_count / total_count * 100)|round if total_count > 0 else 0 %}
-                        
-                        <div class="progress mb-3" style="height: 20px;">
-                            <div class="progress-bar bg-success" role="progressbar" 
-                                data-width="{{ valid_pct }}"
-                                style="width: 0%"
-                                aria-valuenow="{{ valid_pct }}" 
-                                aria-valuemin="0" 
-                                aria-valuemax="100"
-                                id="valid-progress">
-                                {{ validation.valid_count }} Valid
+                        {% if validation is defined %}
+                            {% set total_count = validation.valid_count + validation.invalid_count %}
+                            {% set valid_pct = (validation.valid_count / total_count * 100)|round if total_count > 0 else 0 %}
+                            {% set invalid_pct = (validation.invalid_count / total_count * 100)|round if total_count > 0 else 0 %}
+                            
+                            <div class="progress mb-3" style="height: 20px;">
+                                <div class="progress-bar bg-success" role="progressbar" 
+                                    data-width="{{ valid_pct }}"
+                                    style="width: 0%"
+                                    aria-valuenow="{{ valid_pct }}" 
+                                    aria-valuemin="0" 
+                                    aria-valuemax="100"
+                                    id="valid-progress">
+                                    {{ validation.valid_count }} Valid
+                                </div>
+                                <div class="progress-bar bg-danger" role="progressbar" 
+                                    data-width="{{ invalid_pct }}"
+                                    style="width: 0%"
+                                    aria-valuenow="{{ invalid_pct }}" 
+                                    aria-valuemin="0" 
+                                    aria-valuemax="100"
+                                    id="invalid-progress">
+                                    {{ validation.invalid_count }} Invalid
+                                </div>
                             </div>
-                            <div class="progress-bar bg-danger" role="progressbar" 
-                                data-width="{{ invalid_pct }}"
-                                style="width: 0%"
-                                aria-valuenow="{{ invalid_pct }}" 
-                                aria-valuemin="0" 
-                                aria-valuemax="100"
-                                id="invalid-progress">
-                                {{ validation.invalid_count }} Invalid
-                            </div>
-                        </div>
-                        
-                        <pre class="p-3 bg-light rounded"><code>{{ validation_summary }}</code></pre>
+                            
+                            {% if validation_summary is defined %}
+                                <pre class="p-3 bg-light rounded"><code>{{ validation_summary }}</code></pre>
+                            {% endif %}
+                        {% else %}
+                            <p>No validation data available yet. Upload a file to begin processing.</p>
+                        {% endif %}
                     </div>
                 </div>
                 
